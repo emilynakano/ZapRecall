@@ -1,0 +1,115 @@
+body {
+    background: #FB6B6B;
+    font-family: 'Recursive', sans-serif;
+    font-family: 'Righteous', cursive;
+}
+body h1 {
+    font-family: 'Righteous';
+    font-weight: 400;
+    font-size: 36px;
+    color: #FFFFFF;
+}
+body header {
+    margin: 50px auto;
+    display: flex;
+    flex-direction: row;
+    width: 260px;
+    height: 60px;
+    align-items: center;
+    justify-content: space-between;
+}
+body button:hover {
+    cursor: pointer;
+}
+
+.HomeScreen {
+    width: 246px;
+    height: 350px;
+    margin: 0 auto;
+    margin-top: 148px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.HomeScreen h1 {
+    text-align: center;
+}
+.HomeScreen button {
+    width: 246px;
+    height: 54px;
+    background-color: #FFFFFF;
+    border: 1px solid #D70900;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+
+    font-family: 'Recursive';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #D70900;
+}
+
+.FirstScreen {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+.FirstScreen button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 25px;
+    padding: 0 15px;
+    width: 300px;
+    height: 65px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+
+}
+.FirstScreen button h2 {
+    font-family: 'Recursive';
+    font-weight: 700;
+    font-size: 16px;
+    color: #333333;
+}
+.FirstScreen .Question {
+    flex-wrap: wrap;
+    height: 140px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items:flex-start;
+
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.Question h2 {
+    width: 240px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.Question .vector {
+    width: 240px;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: flex-end;
+}
+
+
+
+
+
+
+.escondido {
+    display: none;
+}
