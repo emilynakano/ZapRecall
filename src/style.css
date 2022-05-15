@@ -121,7 +121,7 @@ footer h2 {
     flex-wrap: wrap;
 }
 .Question .vector {
-    width: 240px;
+    width: 270px;
     display: flex;
     flex-direction: row;
     justify-content: end;
@@ -160,6 +160,9 @@ footer h2 {
     align-items: center;
     text-align: center;
     justify-content: center;
+}
+.Flashcard h3 {
+    color: #2FBE34;
 }
 .Question h3{
     font-family: 'Recursive';
