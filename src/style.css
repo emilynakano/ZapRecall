@@ -94,6 +94,18 @@ body button:hover {
     bottom: 0px;
     position: fixed;
 }
+footer.bigFooter {
+    height: 180px;
+    justify-content: space-between;
+    padding: 15px;
+}
+footer.bigFooter :first-child {
+    display: flex;
+    flex-direction: row;
+}
+footer.bigFooter :first-child img {
+    margin-right: 5px;
+}
 footer h2 {
     font-family: 'Recursive';
     font-style: normal;

@@ -3,8 +3,8 @@ import React from 'react';
 
 export default function FirstScreen() {
     const [contador, setContador] = React.useState(0);
-    const [imgcontador, setImgcontador] = React.useState("")
-
+    const [forgot, setForgot] = React.useState(0)
+    
 
     return (
         <div className="FirstScreen">
@@ -13,18 +13,42 @@ export default function FirstScreen() {
                 <h1>ZappRecall</h1>
             </header>
             {questions.map((question, index)=>
-                    <TestQuestion number={index} key={index} question={question.question} answer={question.answer} setContador={setContador} contador={contador}/>
+                    <TestQuestion number={index} key={index} question={question.question} answer={question.answer} setContador={setContador} setForgot={setForgot} forgot={setForgot} contador={contador}/>
                 )
              }
-            <footer>
-               <h2> {contador}/4 concluidas</h2>
-               
-               <div className="images">
+            <Testfooter contador={contador} forgot={forgot}/>
             
-               </div>
-            
-            </footer>
         </div>
+    )
+}
+function Testfooter(props) {
+    return (
+        <>
+        {props.contador === 4 ? props.forgot === 0 ? <footer className='bigFooter'>
+                <div>
+                    <img src="img/party 2.svg" />
+                    <h2> parabens </h2>
+                </div>
+                <h2>Você não esqueceu de nenhum flashcard!</h2>
+                <h2> {props.contador}/4 CONCLUIDASs!</h2>
+
+        </footer> 
+        : 
+        <footer className='bigFooter'>
+                <div>
+                    <img src="img/sad 7.svg" />
+                    <h2> putz</h2>
+                </div>
+                <h2>Ainda faltam alguns... 
+                    Mas não desanime!</h2>
+                <h2> {props.contador}/4 CONCLUIDAS!</h2>
+
+        </footer> 
+        :
+        <footer>
+               <h2> {props.contador}/4 CONCLUIDAS!</h2>
+        </footer>}
+        </>
     )
 }
 const questions = [
@@ -47,7 +71,7 @@ function TestQuestion (props) {
     const [color, setColor] = React.useState(<h2>Pergunta {props.number + 1}</h2>)
     const [img, setImg] = React.useState("img/Vector.svg")
 
-    return ( <>{openQuestion === "Flashcard" ? <Flashcard img={img} color={color} setopenQuestion={setopenQuestion} number={props.number}/> : <Question setImg={setImg} number={props.number} setopenQuestion={setopenQuestion} setColor={setColor} contador={props.contador} setContador={props.setContador} question={props.question} answer={props.answer}/>}</>
+    return ( <>{openQuestion === "Flashcard" ? <Flashcard img={img} color={color} setopenQuestion={setopenQuestion} number={props.number}/> : <Question setImg={setImg} number={props.number} setopenQuestion={setopenQuestion} setColor={setColor} contador={props.contador} setContador={props.setContador} question={props.question} answer={props.answer} setForgot={props.setForgot} forgot={props.forgot}/>}</>
     ) 
    
 }
@@ -73,6 +97,7 @@ function Question (props) {
             props.setColor(<h5>Pergunta {props.number + 1}</h5>)
             props.setImg("img/forgot.svg")
             props.setContador(props.contador + 1)
+            props.setForgot(props.forgot + 1)
         }
         } className='button red'>
            <h3>Nao lembrei</h3> 
