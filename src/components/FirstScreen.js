@@ -3,6 +3,9 @@ import React from 'react';
 
 export default function FirstScreen() {
     const [contador, setContador] = React.useState(0);
+    const [imgcontador, setImgcontador] = React.useState("")
+
+
     return (
         <div className="FirstScreen">
             <header>
@@ -15,6 +18,11 @@ export default function FirstScreen() {
              }
             <footer>
                <h2> {contador}/4 concluidas</h2>
+               
+               <div className="images">
+            
+               </div>
+            
             </footer>
         </div>
     )
@@ -37,8 +45,9 @@ questions.length = 4
 function TestQuestion (props) {
     const [openQuestion, setopenQuestion] = React.useState("Flashcard")
     const [color, setColor] = React.useState(<h2>Pergunta {props.number + 1}</h2>)
+    const [img, setImg] = React.useState("img/Vector.svg")
 
-    return ( <>{openQuestion === "Flashcard" ? <Flashcard color={color} setopenQuestion={setopenQuestion} number={props.number}/> : <Question setColor={setColor} contador={props.contador} setContador={props.setContador} question={props.question} answer={props.answer}/>}</>
+    return ( <>{openQuestion === "Flashcard" ? <Flashcard img={img} color={color} setopenQuestion={setopenQuestion} number={props.number}/> : <Question setImg={setImg} number={props.number} setopenQuestion={setopenQuestion} setColor={setColor} contador={props.contador} setContador={props.setContador} question={props.question} answer={props.answer}/>}</>
     ) 
    
 }
@@ -47,7 +56,7 @@ function Flashcard(props) {
     return (
         <button className='Flashcard' onClick={() => props.setopenQuestion("Question")}> 
             {props.color}
-            <img width={23} src="img/Vector.svg" />  
+            <img width={23} src={props.img} />  
         </button>
     )
 }
@@ -59,14 +68,30 @@ function Question (props) {
     <button className='Question'> 
     <h2>{props.answer}</h2> 
     <div className="buttons">
-        <div className='button red'>
+        <div onClick={() => {
+            props.setopenQuestion("Flashcard")
+            props.setColor(<h5>Pergunta {props.number + 1}</h5>)
+            props.setImg("img/forgot.svg")
+            props.setContador(props.contador + 1)
+        }
+        } className='button red'>
            <h3>Nao lembrei</h3> 
         </div>
-        <div className='button yellow'>
-           <h3>Quase nao lembrei</h3> 
+        <div onClick={() => {
+            props.setopenQuestion("Flashcard")
+            props.setColor(<h4>Pergunta {props.number + 1}</h4>)
+            props.setImg("img/doubt.svg")
+            props.setContador(props.contador + 1)
+        }
+        } className='button yellow'>
+           <h3 >Quase nao lembrei</h3> 
         </div>
-        <div onClick={() =>
+        <div onClick={() => {
+            props.setopenQuestion("Flashcard")
             props.setColor(<h3>Pergunta {props.number + 1}</h3>)
+            props.setImg("img/remember.svg")
+            props.setContador(props.contador + 1)
+        }
         } className='button green'>
            <h3>Zap!</h3> 
         </div>
