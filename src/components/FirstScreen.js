@@ -4,6 +4,7 @@ import React from 'react';
 export default function FirstScreen() {
     const [contador, setContador] = React.useState(0);
     const [forgot, setForgot] = React.useState(0)
+    const [imagesCont, setImagesCont] = React.useState([])
     
 
     return (
@@ -13,10 +14,10 @@ export default function FirstScreen() {
                 <h1>ZappRecall</h1>
             </header>
             {questions.map((question, index)=>
-                    <TestQuestion number={index} key={index} question={question.question} answer={question.answer} setContador={setContador} setForgot={setForgot} forgot={setForgot} contador={contador}/>
+                    <TestQuestion imagesCont={imagesCont} setImagesCont={setImagesCont} number={index} key={index} question={question.question} answer={question.answer} setContador={setContador} setForgot={setForgot} forgot={setForgot} contador={contador}/>
                 )
              }
-            <Testfooter contador={contador} forgot={forgot}/>
+            <Testfooter imagesCont={imagesCont} contador={contador} forgot={forgot}/>
             
         </div>
     )
@@ -31,6 +32,9 @@ function Testfooter(props) {
                 </div>
                 <h2>Você não esqueceu de nenhum flashcard!</h2>
                 <h2> {props.contador}/4 CONCLUIDAS!</h2>
+                <div className="images">
+                {props.imagesCont.map((i) => <img src={i}/>) }
+                </div>
 
         </footer> 
         : 
@@ -42,11 +46,16 @@ function Testfooter(props) {
                 <h2>Ainda faltam alguns... 
                     Mas não desanime!</h2>
                 <h2> {props.contador}/4 CONCLUIDAS!</h2>
-
+                <div className="images">
+                {props.imagesCont.map((i) => <img src={i}/>) }
+               </div>
         </footer> 
         :
-        <footer>
+        <footer className='principalFooter'>
                <h2> {props.contador}/4 CONCLUIDAS!</h2>
+               <div className="images">
+                {props.imagesCont.map((i) => <img src={i}/>) }
+               </div>
         </footer>}
         </>
     )
@@ -71,7 +80,7 @@ function TestQuestion (props) {
     const [color, setColor] = React.useState(<h2>Pergunta {props.number + 1}</h2>)
     const [img, setImg] = React.useState("img/Vector.svg")
 
-    return ( <>{openQuestion === "Flashcard" ? <Flashcard img={img} color={color} setopenQuestion={setopenQuestion} number={props.number}/> : <Question setImg={setImg} number={props.number} setopenQuestion={setopenQuestion} setColor={setColor} contador={props.contador} setContador={props.setContador} question={props.question} answer={props.answer} setForgot={props.setForgot} forgot={props.forgot}/>}</>
+    return ( <>{openQuestion === "Flashcard" ? <Flashcard img={img} color={color} setopenQuestion={setopenQuestion} number={props.number}/> : <Question imagesCont={props.imagesCont} setImagesCont={props.setImagesCont} setImg={setImg} number={props.number} setopenQuestion={setopenQuestion} setColor={setColor} contador={props.contador} setContador={props.setContador} question={props.question} answer={props.answer} setForgot={props.setForgot} forgot={props.forgot}/>}</>
     ) 
    
 }
@@ -98,6 +107,7 @@ function Question (props) {
             props.setImg("img/forgot.svg")
             props.setContador(props.contador + 1)
             props.setForgot(props.forgot + 1)
+            props.setImagesCont([...props.imagesCont, "img/forgot.svg"])
         }
         } className='button red'>
            <h3>Nao lembrei</h3> 
@@ -107,6 +117,7 @@ function Question (props) {
             props.setColor(<h4>Pergunta {props.number + 1}</h4>)
             props.setImg("img/doubt.svg")
             props.setContador(props.contador + 1)
+            props.setImagesCont([...props.imagesCont, "img/doubt.svg"])
         }
         } className='button yellow'>
            <h3 >Quase nao lembrei</h3> 
@@ -116,6 +127,7 @@ function Question (props) {
             props.setColor(<h3>Pergunta {props.number + 1}</h3>)
             props.setImg("img/remember.svg")
             props.setContador(props.contador + 1)
+            props.setImagesCont([...props.imagesCont, "img/remember.svg"])
         }
         } className='button green'>
            <h3>Zap!</h3> 
