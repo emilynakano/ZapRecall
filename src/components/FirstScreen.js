@@ -30,7 +30,7 @@ function Testfooter(props) {
                     <h2> parabens </h2>
                 </div>
                 <h2>Você não esqueceu de nenhum flashcard!</h2>
-                <h2> {props.contador}/4 CONCLUIDASs!</h2>
+                <h2> {props.contador}/4 CONCLUIDAS!</h2>
 
         </footer> 
         : 
